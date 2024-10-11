@@ -1,0 +1,75 @@
+body{
+  background-color: rgb(160, 205, 239);
+}
+/*cтили контейнеров*/
+.first-screen, .question-container, .last-screen, #options{
+  display: flex;
+  flex-direction: column;
+}
+.first-screen{
+  max-width: 1000px;
+}
+.question-container, .last-screen{
+  max-width: 800px;
+  gap: 25px;
+}
+#options{
+  gap: 15px;
+}
+.first-screen, .question-container, .last-screen{
+  margin: 50px auto;
+  padding: 20px;
+  width: 100%;
+  background-color: rgb(196, 226, 245);
+  border: 1px dashed black;
+  align-items: center;
+}
+
+/*стили текста */
+.test-title{
+  font-size: 65px;
+}
+#question, #resultTest{
+  font-size: 32px;
+}
+.test-title, #question, #resultTest{
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgb(13, 74, 110);
+  text-align: center;
+}
+
+/*стили кнопок */
+.start-btn{
+  max-width: 350px;
+  padding: 15px;
+  font-size: 40px;
+  border-radius: 70px;
+}
+.optionBtn, #nextBtn, #restartBtn{
+  padding: 10px;
+  font-size: 22px;
+  border-radius: 95px;
+}
+.start-btn, .optionBtn, #nextBtn, #restartBtn{
+  background-color: rgb(198, 154, 239);
+  font-family: 'Josefin Sans', sans-serif;
+  border-color: rgb(191, 51, 241);
+  align-self: center;
+  text-align: center;
+  color: rgb(87, 0, 99);
+}
+
+/*стили инпута */
+#userAnswerInput{
+  width: 300px;
+	font-size: 22px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid rgb(191, 51, 241);;
+	background: #F6F6f6;
+	border-radius: 8px;
+}
+
+
+
+
+

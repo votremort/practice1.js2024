@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  <title>Тест</title>
+</head>
+<body>
+  <div  id="firstScreen" class="first-screen">
+    <p class="test-title">Насколько хороший вы сожитель для кота?</p>
+    <button id="startBtn" class="start-btn">Начать тест!</button>
+  </div>
+  <div id="questionContainer" class="question-container">
+    <div id="question"></div>
+    <div id="options"></div>
+    <input type="text" id="userAnswerInput"/>
+    <button id="nextBtn" >Далее</button>
+  </div>
+  <div id="lastScreen" class="last-screen">
+    <div id="resultTest"></div>
+    <button id="restartBtn">Начать сначала</button>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
