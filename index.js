@@ -54,6 +54,7 @@ const questions = [
 
 let curQuestionIndex = 0;
 let score = 0;
+let selectedAnswers = [];
 
 const startBtn = document.getElementById('startBtn');
 const firstScreen = document.getElementById('firstScreen')
@@ -89,11 +90,23 @@ function showQuestion(){
     userAnswerInput.style.display = 'none';
     optionsElem.innerHTML = '';
     currentQuestion.options.forEach(option => {
-      const button = document.createElement('button');
-      button.classList.add('optionBtn')
-      button.innerText = option;
-      button.addEventListener('click', () => handleAnswer(option));
-      optionsElem.appendChild(button);
+      const checkboxContainer = document.createElement('div');
+
+      const optionCheckbox = document.createElement('input');
+      optionCheckbox.type = 'checkbox';
+      optionCheckbox.id = option;
+      optionCheckbox.value = option;
+      optionCheckbox.innerText = option;
+
+      const optionLabel = document.createElement('label');
+      optionLabel.htmlFor = option;
+      optionLabel.innerText = option;
+
+      checkboxContainer.appendChild(optionCheckbox);
+      checkboxContainer.appendChild(optionLabel);
+      optionsElem.appendChild(checkboxContainer);
+
+      //optionCheckbox.addEventListener('click', () => handleAnswer(option));
     });
   } else {
     userAnswerInput.value = '';
@@ -102,26 +115,45 @@ function showQuestion(){
   }
 }
 
-function handleAnswer(selectedAnswer) {
-  const currentQuestion = questions[curQuestionIndex];
+// function handleAnswer(selectedAnswer) {
+//   const currentQuestion = questions[curQuestionIndex];
 
-  if(currentQuestion.question === 'У вас есть кот?') {
-    selectedAnswer === currentQuestion.answer ? score++ : alert('-1 балл за отсутствие кота!')
-  }
+//   if(currentQuestion.question === 'У вас есть кот?') {
+//     selectedAnswer === currentQuestion.answer ? score++ : alert('-1 балл за отсутствие кота!')
+//   }
 
-  if (userAnswerInput.style.display === 'none') {
-    if (selectedAnswer === currentQuestion.answer) {
-      score++;
-    }
-  } else {
-      userAnswerInput.value.trim() === currentQuestion.answer ? score++ : score++ ;
-  }
+//   if (userAnswerInput.style.display === 'none') {
+//     if (selectedAnswer === currentQuestion.answer) {
+//       score++;
+//     }
+//   } else {
+//       userAnswerInput.value.trim() === currentQuestion.answer ? score++ : score++ ;
+//   }
 
-  curQuestionIndex++;
-  curQuestionIndex < questions.length ? showQuestion() : showResult();
-}
+//   curQuestionIndex++;
+//   curQuestionIndex < questions.length ? showQuestion() : showResult();
+// }
 
 function handleNext(){
+  const currentQuestion = questions[curQuestionIndex];
+  const optionCheckboxes = optionsElem.querySelectorAll('input[type = "checkbox"]');
+  selectedAnswers = [];
+  optionCheckboxes.forEach(optionCheckbox => {
+    if (optionCheckbox.ariaChecked) {
+      selectedAnswers.push(optionCheckbox.value)
+    }
+  });
+
+  if(currentQuestion.question === 'У вас есть кот?') {
+    selectedAnswers.includes(currentQuestion.answer) === currentQuestion.answer ? score++ : alert('-1 балл за отсутствие кота!')
+  } else {
+    selectedAnswers.forEach(answer => {
+      if(answer === currentQuestion.answer){
+        score++;
+      }
+    })
+  }
+
   curQuestionIndex++;
   curQuestionIndex < questions.length ? showQuestion() : showResult();
 }
